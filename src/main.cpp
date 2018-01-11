@@ -2,10 +2,10 @@
 #include "headers/GameObject.h"
 
 int main() {
-  sf::RenderWindow window(sf::VideoMode(200,200), "SFML Works!!");
+  sf::RenderWindow window(sf::VideoMode(800,800), "SFML Works!!");
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
-
+  printf("%lu\n",sizeof(GameObject));
   while (window.isOpen()) {
     sf::Event event;
     while (window.pollEvent(event)) {
