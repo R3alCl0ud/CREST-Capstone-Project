@@ -3,19 +3,13 @@
 
 #ifndef PHYSICS_2D
 #define PHYSICS_2D  1
-// Write Code here
+// Write Code here https://www.desmos.com/calculator/jy47o2j2fx
 class Physics2D {
-  public:
-    Physics2D(const sf::Vector2f &pos=sf::Vector2f(0,0)) {
-      this->position = pos;
-    };
-    sf::Vector2f getPosition();
-    void setPosition(const sf::Vector2f &pos=sf::Vector2f(0,0));
-    void setPosition(float x, float y);
-    void addForce(const sf::Vector3f &vector3f=sf::Vector3f(0,0,0));
+private:
+  double vh, vv, mass, gravity;
+  float x, y, dx, dy;
 
-  private:
-    sf::Vector2f position;
+public:
 };
 
 
