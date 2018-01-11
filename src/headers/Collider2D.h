@@ -3,7 +3,7 @@
 // Write Code here
 class Collider2D {
   public:
-    bool intersects(RectangleCollider2D rectangleColl2D);
+    bool intersects(Collider2D collider2D);
 
   private:
 

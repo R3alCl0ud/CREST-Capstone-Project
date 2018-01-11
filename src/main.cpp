@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "headers/GameObject.h"
 
 int main() {
   sf::RenderWindow window(sf::VideoMode(200,200), "SFML Works!!");
@@ -10,6 +11,9 @@ int main() {
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
         window.close();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+      window.close();
     }
 
     window.clear();
