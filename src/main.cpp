@@ -1,11 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include "headers/GameObject.h"
 
+
+
 int main() {
   sf::RenderWindow window(sf::VideoMode(800,800), "SFML Works!!");
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
-  printf("%lu\n",sizeof(GameObject));
+  printf("%lu\n",sizeof(engine::GameObject));
   while (window.isOpen()) {
     sf::Event event;
     while (window.pollEvent(event)) {
