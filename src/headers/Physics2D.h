@@ -4,13 +4,14 @@
 #ifndef PHYSICS_2D
 #define PHYSICS_2D  1
 // Write Code here https://www.desmos.com/calculator/jy47o2j2fx
-class Physics2D {
-private:
-  double vh, vv, mass, gravity;
-  float x, y, dx, dy;
+namespace engine {
+  class Physics2D {
+    private:
+      double vh, vv, mass, gravity;
+      float x, y, dx, dy;
 
-public:
-};
-
+    public:
+    };
+}
 
 #endif
