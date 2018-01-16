@@ -1,8 +1,9 @@
+#ifndef GAMEOBJECT
+#define GAMEOBJECT 1
+
 #include <SFML/Graphics.hpp>
 #include "Physics2D.h"
 
-#ifndef GAMEOBJECT
-#define GAMEOBJECT 1
 namespace engine {
 
   class GameObject {
