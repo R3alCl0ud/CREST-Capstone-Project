@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/System/Vector3.hpp>
+#define _USE_MATH_DEFINES
 #include <cmath>
 #include <math.h>
 #include <stdlib.h>
@@ -22,6 +23,7 @@ namespace engine {
   class Physics2D {
     public:
       Physics2D();
+      Physics2D(float dx, float dy);
       void addForce(sf::Vector2f *pos);
       void setPrecision(int p);
       double integral(double(*f)(double x), double a, double b, int n);

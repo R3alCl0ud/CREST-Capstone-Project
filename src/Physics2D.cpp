@@ -12,6 +12,21 @@ using namespace std;
 // using namespace std;
 
 // public:
+Physics2D::Physics2D() {
+  this->x = 0;
+  this->y = 0;
+  this->dx = 0;
+  this->dy = 0;
+}
+
+// Use this when there is an initial velocity on the object
+Physics2D::Physics2D(float dx, float dy) {
+  this->x = 0;
+  this->y = 0;
+  this->dx = dx;
+  this->dy = dy;
+}
+
 void Physics2D::addForce(sf::Vector2f *pos) {
   this->velocity.x += pos->x;
   this->velocity.y += pos->y;
