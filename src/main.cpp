@@ -16,6 +16,7 @@ int main() {
   level.getView().setSize(1000,1000);
   window.setView(level.getView());
   while (window.isOpen()) {
+    window.clear();
     sf::Event event;
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed)
@@ -30,7 +31,6 @@ int main() {
           }
         }
     }
-    window.clear();
     window.draw(shape);
     window.display();
   }

@@ -2,6 +2,8 @@
 #define LEVEL 1
 #include <SFML/Graphics.hpp>
 #include "Types.h"
+#include <stdlib.h>
+
 namespace engine {
   class Level {
     public:
@@ -12,7 +14,8 @@ namespace engine {
       virtual void addGameObject(GameObject* gameObject);
       virtual void draw();
     private:
-      GameObject* gameObjects;
+      std::list<GameObject> gameObjects;
+      // GameObject* gameObjects;
       sf::View view;
   };
   // Level* curLevel = 0x0;
