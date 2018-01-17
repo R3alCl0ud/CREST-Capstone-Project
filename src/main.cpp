@@ -14,9 +14,11 @@ int main() {
   // level.getView().setCenter(200,200);
   // float vx = 0;
   level.getView().setSize(1000,1000);
+  engine::Level::currentLevel = &level;
   window.setView(level.getView());
   sf::Event event;
   while (window.isOpen()) {
+    window.clear();
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed) {
         window.close();
@@ -30,7 +32,6 @@ int main() {
         }
       }
     }
-    window.clear();
     window.draw(shape);
     window.display();
   }

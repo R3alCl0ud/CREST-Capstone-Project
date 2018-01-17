@@ -4,7 +4,12 @@ namespace engine {
 
 using namespace std;
 
+Physics2D::Physics2D() {
 
+}
+Physics2D::Physics2D(engine::GameObject* parent) {
+  this->parent = parent;
+}
 // https://www.desmos.com/calculator/5xew1bmpgo
 
 // Inertia: https://www.desmos.com/calculator/dro8kssov6

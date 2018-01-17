@@ -13,8 +13,9 @@ namespace engine {
       virtual ~Level();
       virtual std::list<engine::GameObject*> getGameObjects();
       virtual sf::View getView();
-      virtual void addGameObject(GameObject* gameObject);
+      virtual void addGameObject(engine::GameObject* gameObject);
       virtual void draw();
+      Level static *currentLevel;
     private:
       std::list<engine::GameObject*> gameObjects;
       // GameObject* gameObjects;

@@ -16,7 +16,11 @@ namespace engine {
       sf::Vector2f getPosition();
       void setPosition();
       float getRotation();
-      void setRotation();
+      float getRotationAsDeg();
+      void setRotation(float angle);
+      void setRotationAsDeg(float angle);
+      void rotateAsDeg(float angle);
+      void rotate(float);
     private:
       sf::Vector2f position;
       engine::Physics2D physics2D;

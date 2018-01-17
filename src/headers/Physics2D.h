@@ -22,11 +22,13 @@ namespace engine {
   class Physics2D {
     public:
       Physics2D();
+      Physics2D(engine::GameObject* parent);
       void addForce(sf::Vector2f *pos);
       void setPrecision(int p);
       double integral(double(*f)(double x), double a, double b, int n);
 
     private:
+      engine::GameObject* parent;
       double vh, vv, mass, gravity;
       sf::Vector2f velocity = sf::Vector2f();
       float x, y, dx, dy;

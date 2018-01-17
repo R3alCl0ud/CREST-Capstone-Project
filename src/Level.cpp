@@ -3,8 +3,6 @@
 
 namespace engine {
     Level::Level() {
-      // this->gameObjects = {};
-      // this->gameObjects = (GameObject*)calloc(100, sizeof(GameObject*));
       this->view = sf::View();
     }
 
@@ -18,6 +16,7 @@ namespace engine {
 
     void Level::addGameObject(engine::GameObject* gameObject) {
       // something something darkside
+      this->gameObjects.push_back(gameObject);
     }
 
     void Level::draw() {
