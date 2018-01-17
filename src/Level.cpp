@@ -3,15 +3,16 @@
 
 namespace engine {
     Level::Level() {
-      this->gameObjects = (GameObject*)calloc(100, sizeof(GameObject*));
+      // this->gameObjects = {};
+      // this->gameObjects = (GameObject*)calloc(100, sizeof(GameObject*));
       this->view = sf::View();
     }
 
     Level::~Level() {
-      delete this->gameObjects;
+       this->gameObjects.~list<GameObject*>();
     }
 
-    GameObject* Level::getGameObjects() {
+    std::list<engine::GameObject*> Level::getGameObjects() {
       return this->gameObjects;
     }
 

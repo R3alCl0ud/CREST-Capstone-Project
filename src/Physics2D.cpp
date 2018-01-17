@@ -1,10 +1,4 @@
 #include "headers/Physics2D.h"
-#include <SFML/Graphics.hpp>
-#include <cmath>
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <iostream>
 
 namespace engine {
 
