@@ -21,6 +21,7 @@ namespace engine {
 
   class Physics2D {
     public:
+      Physics2D();
       void addForce(sf::Vector2f *pos);
       void setPrecision(int p);
       double integral(double(*f)(double x), double a, double b, int n);

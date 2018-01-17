@@ -7,7 +7,7 @@ int main() {
   sf::RenderWindow window(sf::VideoMode(800, 800), "SFML Works!!");
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
-  shape.setPosition(sf::Vector2f(0,0));
+  shape.setPosition(sf::Vector2f(200,0));
   printf("%lu\n",sizeof(engine::Level));
   engine::Level level;
   level = engine::Level();
@@ -15,22 +15,22 @@ int main() {
   // float vx = 0;
   level.getView().setSize(1000,1000);
   window.setView(level.getView());
+  sf::Event event;
   while (window.isOpen()) {
-    window.clear();
-    sf::Event event;
     while (window.pollEvent(event)) {
-      if (event.type == sf::Event::Closed)
+      if (event.type == sf::Event::Closed) {
         window.close();
-        if (event.type==sf::Event::KeyPressed) {
-          if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-            window.close();
-          }
-          else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            level.getView().move(-100,-100);
-            window.setView(level.getView());
-          }
+      } else if (event.type==sf::Event::KeyPressed) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+          sf::View v = window.getView();
+          v.move(-5,0);
+          window.setView(v);
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+          window.close();
         }
+      }
     }
+    window.clear();
     window.draw(shape);
     window.display();
   }
