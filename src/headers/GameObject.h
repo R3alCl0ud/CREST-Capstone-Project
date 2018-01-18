@@ -11,6 +11,7 @@ namespace engine {
       GameObject();
       virtual ~GameObject();
       void update();
+      void fixedUpdate();
       void start();
       engine::Physics2D getPhysics();
       sf::Vector2f getPosition();

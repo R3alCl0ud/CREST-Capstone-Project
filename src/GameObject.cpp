@@ -30,12 +30,17 @@ namespace engine {
   }
 
   GameObject::~GameObject() {
-
+    // this->getLevel()->removeGameObject(this);
   }
 
   void GameObject::update() {
 
   }
+
+  void fixedUpdate() {
+    
+  }
+
   engine::Level* GameObject::getLevel() {
     return this->curLevel;
   }

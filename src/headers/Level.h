@@ -1,7 +1,7 @@
 #ifndef LEVEL
 #define LEVEL 1
 #include <SFML/Graphics.hpp>
-#include "Types.h"
+#include "GameObject.h"
 #include <stdlib.h>
 #include <algorithm>
 #include <list>
@@ -14,8 +14,9 @@ namespace engine {
       virtual std::list<engine::GameObject*> getGameObjects();
       virtual sf::View getView();
       virtual void addGameObject(engine::GameObject* gameObject);
+      virtual void removeGameObject(engine::GameObject* gameObject);
       virtual void draw();
-
+      // void in
 
     private:
       std::list<engine::GameObject*> gameObjects;

@@ -15,17 +15,22 @@ int main() {
   level->getView().setSize(1000,1000);
   window.setView(level->getView());
   sf::Event event;
+
+  sf::Clock anUpdateClock;
+
+  anUpdateClock.restart();
+
+  // When do we need to update next (in milliseconds)?
+  sf::Int32 anUpdateNext = anUpdateClock.getElapsedTime().asMilliseconds();
   while (window.isOpen()) {
+
     window.clear();
+
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed) {
         window.close();
-      } else if (event.type==sf::Event::KeyPressed) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-          sf::View v = window.getView();
-          v.move(-5,0);
-          window.setView(v);
-        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+      } else if (event.type == sf::Event::KeyPressed) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
           window.close();
         }
       }

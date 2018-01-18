@@ -2,6 +2,7 @@
 #include "headers/Level.h"
 
 namespace engine {
+
     Level::Level() {
       this->view = sf::View();
     }
@@ -17,19 +18,18 @@ namespace engine {
     void Level::addGameObject(engine::GameObject* gameObject) {
       // something something darkside
       this->gameObjects.push_back(gameObject);
+      gameObject->setLevel(this);
+    }
+
+    void Level::removeGameObject(engine::GameObject* gameObject) {
+      this->gameObjects.remove(gameObject);
     }
 
     void Level::draw() {
 
     }
+
     sf::View Level::getView() {
       return this->view;
     }
-    // Level* static Level::getCurrentLevel() {
-    //   return _currentLevel;
-    // }
-    //
-    // void static Level::setCurrentlLevel(Level* level) {
-    //   _currentLevel = level;
-    // }
 }
