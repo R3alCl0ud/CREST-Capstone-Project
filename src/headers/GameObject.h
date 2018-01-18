@@ -8,6 +8,12 @@ namespace engine {
 
   class GameObject {
     public:
+
+      sf::Sprite sprite;
+      sf::Shape shape;
+      sf::Text text;
+      sf::VertexArray vertices;
+
       GameObject();
       virtual ~GameObject();
       void update();
@@ -24,6 +30,7 @@ namespace engine {
       void rotate(float);
       engine::Level* getLevel();
       void setLevel(Level* level);
+
     private:
       sf::Vector2f position;
       engine::Physics2D physics2D;

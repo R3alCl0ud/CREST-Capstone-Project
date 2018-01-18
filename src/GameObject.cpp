@@ -1,6 +1,21 @@
 #include "headers/GameObject.h"
 
 namespace engine {
+
+  GameObject::GameObject() {
+    this->position = sf::Vector2f(0, 0);
+    this->physics2D = Physics2D(this);
+    this->rotation = 0;
+    // this->sprite = NULL;
+    // this->shape = NULL;
+    // this->text = NULL;
+    // this->vertices = NULL;
+  }
+
+  GameObject::~GameObject() {
+    // this->getLevel()->removeGameObject(this);
+  }
+
   float GameObject::getRotation() {
     return this->rotation;
   }
@@ -23,22 +38,14 @@ namespace engine {
     this->rotation = std::fmod(this->rotation, (2 * M_PI));
   }
 
-  GameObject::GameObject() {
-    this->position = sf::Vector2f(0, 0);
-    this->physics2D = Physics2D(this);
-    this->rotation = 0;
-  }
 
-  GameObject::~GameObject() {
-    // this->getLevel()->removeGameObject(this);
-  }
 
   void GameObject::update() {
 
   }
 
   void fixedUpdate() {
-    
+
   }
 
   engine::Level* GameObject::getLevel() {
