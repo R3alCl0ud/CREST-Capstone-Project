@@ -44,6 +44,9 @@ void Physics2D::setPrecision(int p) {
   this->precision = p;
 }
 
+float dx() { return this->dx; }
+float dy() { return this->dy; }
+
 double Physics2D::integral(double(*f)(double x), double a, double b, int n) {
   double step = (b - a) / n;  // Creates width of each rectangle
   double area = 0.0; // signed

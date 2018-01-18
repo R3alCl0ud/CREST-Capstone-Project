@@ -42,6 +42,7 @@ namespace engine {
       // Initialize to position (0, 0)
       sf::Vector2f pos(0.0, 0.0);
       sf::Texture tex;
+      sf::IntRect bound;
       sf::Sprite sprite;
 
 

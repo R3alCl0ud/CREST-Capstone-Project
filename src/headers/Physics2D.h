@@ -29,6 +29,8 @@ namespace engine {
       void addForce(sf::Vector2f *pos);
       void setPrecision(int p);
       double integral(double(*f)(double x), double a, double b, int n);
+      float dx();
+      float dy();
 
     private:
       engine::GameObject* parent;
