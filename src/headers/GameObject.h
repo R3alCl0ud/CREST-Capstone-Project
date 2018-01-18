@@ -21,9 +21,12 @@ namespace engine {
       void setRotationAsDeg(float angle);
       void rotateAsDeg(float angle);
       void rotate(float);
+      engine::Level* getLevel();
+      void setLevel(Level* level);
     private:
       sf::Vector2f position;
       engine::Physics2D physics2D;
+      engine::Level* curLevel;
       float rotation;
   };
 }

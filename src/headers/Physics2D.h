@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/System/Vector3.hpp>
+#include "Types.h"
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <math.h>
@@ -23,7 +24,7 @@ namespace engine {
   class Physics2D {
     public:
       Physics2D();
-      Physics2D(engine::GameObject* parent);
+      Physics2D(GameObject* parent);
       Physics2D(float dx, float dy);
       void addForce(sf::Vector2f *pos);
       void setPrecision(int p);
@@ -32,9 +33,9 @@ namespace engine {
     private:
       engine::GameObject* parent;
       double vh, vv, mass, gravity;
-      sf::Vector2f velocity = sf::Vector2f();
+      sf::Vector2f velocity;
       float x, y, dx, dy;
-      int precision = 10;
+      int precision;
       double static normalCurve(double t) {
         return std::pow(E_C, ((t * t) * -1));
       }

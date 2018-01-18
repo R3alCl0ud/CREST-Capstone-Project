@@ -15,11 +15,13 @@ namespace engine {
       virtual sf::View getView();
       virtual void addGameObject(engine::GameObject* gameObject);
       virtual void draw();
-      Level static *currentLevel;
+
+
     private:
       std::list<engine::GameObject*> gameObjects;
       // GameObject* gameObjects;
       sf::View view;
+
   };
   // Level* curLevel = 0x0;
 }

@@ -11,16 +11,16 @@ namespace engine {
 
   void GameObject::setRotation(float angle) {
     this->rotation = angle;
-    this->rotation %= 2 * M_PI;
+    this->rotation = std::fmod(this->rotation, (2 * M_PI));
   }
 
-  void GameObject::setRotation(float angle) {
-    this->rotation = (angle % 360) * M_PI  / 180.0;
-  }
+  // void GameObject::setRotation(float angle) {
+  //   this->rotation = (angle % 360) * M_PI  / 180.0;
+  // }
 
   void GameObject::rotateAsDeg(float angle) {
     this->rotation += angle * M_PI / 180.0;
-    this->rotation %= 2 * M_PI;
+    this->rotation = std::fmod(this->rotation, (2 * M_PI));
   }
 
   GameObject::GameObject() {
@@ -35,6 +35,13 @@ namespace engine {
 
   void GameObject::update() {
 
+  }
+  engine::Level* GameObject::getLevel() {
+    return this->curLevel;
+  }
+
+  void GameObject::setLevel(Level* level) {
+    this->curLevel = level;
   }
 
 }

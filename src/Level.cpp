@@ -25,5 +25,11 @@ namespace engine {
     sf::View Level::getView() {
       return this->view;
     }
-
+    // Level* static Level::getCurrentLevel() {
+    //   return _currentLevel;
+    // }
+    //
+    // void static Level::setCurrentlLevel(Level* level) {
+    //   _currentLevel = level;
+    // }
 }

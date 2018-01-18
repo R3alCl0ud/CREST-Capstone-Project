@@ -4,11 +4,10 @@ namespace engine {
 
 using namespace std;
 
-Physics2D::Physics2D() {
-
-}
 Physics2D::Physics2D(engine::GameObject* parent) {
   this->parent = parent;
+  this->velocity = sf::Vector2f();
+  this->precision = 10;
 }
 // https://www.desmos.com/calculator/5xew1bmpgo
 
@@ -22,6 +21,8 @@ Physics2D::Physics2D() {
   this->y = 0;
   this->dx = 0;
   this->dy = 0;
+  this->velocity = sf::Vector2f();
+  this->precision = 10;
 }
 
 // Use this when there is an initial velocity on the object
@@ -30,6 +31,8 @@ Physics2D::Physics2D(float dx, float dy) {
   this->y = 0;
   this->dx = dx;
   this->dy = dy;
+  this->velocity = sf::Vector2f();
+  this->precision = 10;
 }
 
 void Physics2D::addForce(sf::Vector2f *pos) {
