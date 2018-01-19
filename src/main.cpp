@@ -1,8 +1,29 @@
 #include <SFML/Graphics.hpp>
-#include "headers/Level.h"
+#include "headers/Game.hpp"
+#include "headers/Level.hpp"
+#include "headers/Player.hpp"
+#include "headers/Types.hpp"
 
+class TestLevel : public engine::Level {
+  public:
+    TestLevel() {
+      engine::Player player = engine::Player();
+      addGameObject(&player);
+    }
+};
 
 int main() {
+  engine::Game game("Testing Game");
+
+  TestLevel tl = TestLevel();
+
+  return game.run();
+}
+
+
+
+
+int notmain() {
   sf::RenderWindow window(sf::VideoMode(800, 800), "SFML Works!!");
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);

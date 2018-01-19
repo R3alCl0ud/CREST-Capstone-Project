@@ -1,4 +1,4 @@
-#include "headers/Game.h"
+#include "headers/Game.hpp"
 #include <stdlib.h>
 #include <algorithm>
 #include <list>
@@ -7,17 +7,25 @@
 namespace engine {
   Game* Game::gGame = NULL;
   engine::Level* Game::gLevel = NULL;
+  engine::GameObjectList Game::gObjects = engine::GameObjectList();
   Game::Game(const std::string title) {
     windowTitle = title;
     window.create(sf::VideoMode(800, 800), windowTitle);
     mUpdateRate = 1.0f / 20.0f;
     gGame = this;
   }
+
   Game::~Game() {
 
   }
 
+  int Game::run(void) {
+    this->GameLoop();
+    return 0;
+  }
+
   void Game::GameLoop(void) {
+    bool lc = false;
     sf::Event event;
 
     sf::Clock anUpdateClock;
@@ -41,31 +49,37 @@ namespace engine {
       }
       sf::Int32 anUpdateTime = anUpdateClock.getElapsedTime().asMilliseconds();
       if (gLevel != NULL) {
+        if (!lc){
+          printf("Running all level things\n");
+          lc = true;
+        }
         while((anUpdateTime - anUpdateNext) >= mUpdateRate && anUpdates++ < 5) {
-          for (std::list<engine::GameObject*>::iterator gm= gLevel->getGameObjects().begin(); gm != gLevel->getGameObjects().end(); ++gm){
+          for (engine::GameObject* gm : gObjects) {
+            printf("Fixed Updating GM\n");
             gm->fixedUpdate();
             if (gm->sprite != NULL) {
-              gm->sprite.setPosition(gm->getPosition());
+              gm->sprite->setPosition(gm->getPosition());
             } else if (gm->shape != NULL) {
-              gm->shape.setPosition(gm->getPosition());
+              gm->shape->setPosition(gm->getPosition());
             } else if (gm->text != NULL) {
-              gm->text.setPosition(gm->getPosition());
-            } else if (gm->vertices != NULL) {
-              gm->vertices.setPosition(gm->getPosition());
+              gm->text->setPosition(gm->getPosition());
             }
+            // else if (gm->vertices != NULL) {
+              // gm->vertices->setPosition(gm->getPosition());
+            // }
           }
         }
-        for (std::list<engine::GameObject*>::iterator gm= gLevel->getGameObjects().begin(); gm != gLevel->getGameObjects().end(); ++gm){
+        for (engine::GameObject* gm : gObjects)gm->update();
+
+        for (engine::GameObject* gm : gObjects) {
           if (gm->sprite != NULL) {
-            window.draw(gm->sprite);
+            printf("Drawing sprite\n");
+            window.draw(*gm->sprite);
           } else if (gm->shape != NULL) {
-            window.draw(gm->shape);
+            window.draw(*gm->shape);
           } else if (gm->text != NULL) {
-            window.draw(gm->text);
-          } else if (gm->vertices != NULL) {
-            window.draw(gm->vertices);
+            window.draw(*gm->text);
           }
-          // gm->fixedUpdate();
         }
       }
       // window.draw(shape);
@@ -80,7 +94,13 @@ namespace engine {
   Game* Game::GetGame(void) {
     return gGame;
   }
+
+  GameObjectList Game::GetGameObjects(void) {
+    return gObjects;
+  }
+
   void Game::SetLevel(engine::Level* level) {
     gLevel = level;
+    // gObjects = level->getGameObjects();
   }
 }

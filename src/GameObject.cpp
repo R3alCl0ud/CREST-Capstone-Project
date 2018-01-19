@@ -6,10 +6,6 @@ namespace engine {
     this->position = sf::Vector2f(0, 0);
     this->physics2D = Physics2D(this);
     this->rotation = 0;
-    // this->sprite = NULL;
-    // this->shape = NULL;
-    // this->text = NULL;
-    // this->vertices = NULL;
   }
 
   GameObject::~GameObject() {
@@ -29,6 +25,13 @@ namespace engine {
     this->rotation = std::fmod(this->rotation, (2 * M_PI));
   }
 
+  void GameObject::setPosition(float x, float y) {
+    this->position = sf::Vector2f(x,y);
+  }
+
+  void GameObject::setPosition(sf::Vector2f position) {
+    this->position = position;
+  }
   // void GameObject::setRotation(float angle) {
   //   this->rotation = (angle % 360) * M_PI  / 180.0;
   // }
@@ -38,13 +41,15 @@ namespace engine {
     this->rotation = std::fmod(this->rotation, (2 * M_PI));
   }
 
-
+  sf::Vector2f GameObject::getPosition() {
+    return this->position;
+  }
 
   void GameObject::update() {
 
   }
 
-  void fixedUpdate() {
+  void GameObject::fixedUpdate() {
 
   }
 

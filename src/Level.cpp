@@ -1,28 +1,33 @@
 #include <SFML/Graphics.hpp>
-#include "headers/Level.h"
+#include "headers/Level.hpp"
+#include "headers/Game.hpp"
 
 namespace engine {
 
     Level::Level() {
       this->view = sf::View();
+      engine::Game::SetLevel(this);
     }
 
     Level::~Level() {
-       this->gameObjects.~list<GameObject*>();
+       this->gameObjects.~GameObjectList();
     }
 
-    std::list<engine::GameObject*> Level::getGameObjects() {
+    GameObjectList Level::getGameObjects() {
       return this->gameObjects;
     }
 
     void Level::addGameObject(engine::GameObject* gameObject) {
       // something something darkside
+      printf("adding gameobject\n");
       this->gameObjects.push_back(gameObject);
       gameObject->setLevel(this);
+      engine::Game::GetGameObjects().push_back(gameObject);
     }
 
     void Level::removeGameObject(engine::GameObject* gameObject) {
       this->gameObjects.remove(gameObject);
+      engine::Game::GetGameObjects().remove(gameObject);
     }
 
     void Level::draw() {

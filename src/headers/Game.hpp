@@ -3,7 +3,8 @@
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "Types.h"
+#include "GameObject.h"
+#include "Types.hpp"
 #include <string.h>
 
 namespace engine {
@@ -17,6 +18,9 @@ namespace engine {
     static Game* GetGame(void);
     static Level* GetLevel(void);
     static void SetLevel(engine::Level* level);
+    static GameObjectList GetGameObjects(void);
+
+    int run(void);
   protected:
     void GameLoop(void);
   private:
@@ -24,6 +28,7 @@ namespace engine {
 
     static Game* gGame;
     static engine::Level* gLevel;
+    static GameObjectList gObjects;
   };
 }
 

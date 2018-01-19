@@ -5,7 +5,11 @@
 namespace engine {
   class RectangleCollider2D : Collider2D {
     public:
+      RectangleCollider2D();
+      virtual ~RectangleCollider2D();
+
       bool intersects(RectangleCollider2D rectangleColl2D);
+
 
     private:
 

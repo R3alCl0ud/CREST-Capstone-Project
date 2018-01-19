@@ -2,65 +2,64 @@
 
 namespace engine {
 
-using namespace std;
+  using namespace std;
 
-Physics2D::Physics2D(engine::GameObject* parent) {
-  this->parent = parent;
-  this->velocity = sf::Vector2f();
-  this->precision = 10;
-}
-// https://www.desmos.com/calculator/5xew1bmpgo
+  Physics2D::Physics2D(engine::GameObject* parent) {
+    this->parent = parent;
+    this->velocity = sf::Vector2f();
+    this->precision = 10;
+  }
+  // https://www.desmos.com/calculator/5xew1bmpgo
 
-// Inertia: https://www.desmos.com/calculator/dro8kssov6
+  // Inertia: https://www.desmos.com/calculator/dro8kssov6
 
-// using namespace std;
+  // using namespace std;
 
-// public:
-Physics2D::Physics2D() {
-  this->x = 0;
-  this->y = 0;
-  this->dx = 0;
-  this->dy = 0;
-  this->velocity = sf::Vector2f();
-  this->precision = 10;
-}
-
-// Use this when there is an initial velocity on the object
-Physics2D::Physics2D(float dx, float dy) {
-  this->x = 0;
-  this->y = 0;
-  this->dx = dx;
-  this->dy = dy;
-  this->velocity = sf::Vector2f();
-  this->precision = 10;
-}
-
-void Physics2D::addForce(sf::Vector2f *pos) {
-  this->velocity.x += pos->x;
-  this->velocity.y += pos->y;
-}
-
-void Physics2D::setPrecision(int p) {
-  this->precision = p;
-}
-
-float dx() { return this->dx; }
-float dy() { return this->dy; }
-
-double Physics2D::integral(double(*f)(double x), double a, double b, int n) {
-  double step = (b - a) / n;  // Creates width of each rectangle
-  double area = 0.0; // signed
-  for (int i = 0; i < n; i++) {
-    area += f(a + (i + 0.5) * step) * step; // Sum of each rectangle
+  // public:
+  Physics2D::Physics2D() {
+    this->x = 0;
+    this->y = 0;
+    this->_dx = 0;
+    this->_dy = 0;
+    this->velocity = sf::Vector2f();
+    this->precision = 10;
   }
 
-  return area;
-}
+  // Use this when there is an initial velocity on the object
+  Physics2D::Physics2D(float dx, float dy) {
+    this->x = 0;
+    this->y = 0;
+    this->_dx = dx;
+    this->_dy = dy;
+    this->velocity = sf::Vector2f();
+    this->precision = 10;
+  }
+
+  void Physics2D::addForce(sf::Vector2f *pos) {
+    this->velocity.x += pos->x;
+    this->velocity.y += pos->y;
+  }
+
+  void Physics2D::setPrecision(int p) {
+    this->precision = p;
+  }
+
+  float Physics2D::dx() { return this->_dx; }
+  float Physics2D::dy() { return this->_dy; }
+
+  double Physics2D::integral(double(*f)(double x), double a, double b, int n) {
+    double step = (b - a) / n;  // Creates width of each rectangle
+    double area = 0.0; // signed
+    for (int i = 0; i < n; i++) {
+      area += f(a + (i + 0.5) * step) * step; // Sum of each rectangle
+    }
+
+    return area;
+  }
 
 // private:
   int precision = 10; // Default precision
   double velocity = 0.0;
-
 
   // Returns new velocity at given moment given the total mass
   double Physics2D::instantInertia(sf::Vector2f &pos, double startPos, double mass, double initVelocity) {

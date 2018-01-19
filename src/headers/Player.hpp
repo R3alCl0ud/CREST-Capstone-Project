@@ -1,11 +1,11 @@
 #ifndef CHAR_N
 #define CHAR_N  1
 // Include Physics lib
-#include "Physics2D.h"
-#include <SFML/Sprite.hpp>
+#include "GameObject.h"
+#include <SFML/Graphics/Sprite.hpp>
 
 namespace engine {
-  class Char:GameObject {
+  class Player : public engine::GameObject {
   public:
     void changePosition(const sf::Vector2f &npos);
     double deltaX();
@@ -19,34 +19,33 @@ namespace engine {
     */
     void loadFromFile(char* FNAME) {
       this->tex.loadFromFile(FNAME);
-      this->sprite.setTexture(texture)
+      this->sprite.setTexture(this->tex);
     }
 
-    Char();
-    ~Char();
+    Player();
+    ~Player();
 
-    Char(sf::IntRect bounds);
-    Char(sf::IntRect bounds, sf::Color color);
+    Player(sf::IntRect bounds);
+    Player(sf::IntRect bounds, sf::Color color);
 
     void setColor(sf::Color color);
-    void setPosition(const sf::Vector2f &pos);
+    // void setPosition(const sf::Vector2f &pos);
 
     void setScale(const sf::Vector2f &scale) {
       this->sprite.setScale(scale.x, scale.y);
     }
 
     void dynChange() {
-      sf::Vector2f chng(this.pos.x + deltaX(), this.pos.y + deltaY());
+      sf::Vector2f chng(getPosition().x + deltaX(), getPosition().y + deltaY());
     }
+    void update();
   private:
       // Initialize to position (0, 0)
-      sf::Vector2f pos(0.0, 0.0);
+      // sf::Vector2f pos();
       sf::Texture tex;
       sf::IntRect bound;
       sf::Sprite sprite;
 
-
-      Physics2D p2d = new Physics2D();
       double initialVelocity = 0.0;
 
       int width = 0;
