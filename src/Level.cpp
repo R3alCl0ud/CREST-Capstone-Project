@@ -23,6 +23,7 @@ namespace engine {
       this->gameObjects.push_back(gameObject);
       gameObject->setLevel(this);
       engine::Game::GetGameObjects().push_back(gameObject);
+      gameObject->start();
     }
 
     void Level::removeGameObject(engine::GameObject* gameObject) {

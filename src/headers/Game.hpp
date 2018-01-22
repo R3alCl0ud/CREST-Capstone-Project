@@ -4,6 +4,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
+#include "Level.hpp"
 #include "Types.hpp"
 #include <string.h>
 

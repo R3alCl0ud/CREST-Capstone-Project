@@ -1,4 +1,5 @@
 #include "headers/Game.hpp"
+
 #include <stdlib.h>
 #include <algorithm>
 #include <list>
@@ -49,37 +50,33 @@ namespace engine {
       }
       sf::Int32 anUpdateTime = anUpdateClock.getElapsedTime().asMilliseconds();
       if (gLevel != NULL) {
+        GameObjectList gObjs = gLevel->getGameObjects();
         if (!lc){
           printf("Running all level things\n");
           lc = true;
         }
         while((anUpdateTime - anUpdateNext) >= mUpdateRate && anUpdates++ < 5) {
-          for (engine::GameObject* gm : gObjects) {
+          for (engine::GameObject* gm : gObjs) {
             printf("Fixed Updating GM\n");
             gm->fixedUpdate();
-            if (gm->sprite != NULL) {
-              gm->sprite->setPosition(gm->getPosition());
-            } else if (gm->shape != NULL) {
-              gm->shape->setPosition(gm->getPosition());
-            } else if (gm->text != NULL) {
-              gm->text->setPosition(gm->getPosition());
-            }
-            // else if (gm->vertices != NULL) {
-              // gm->vertices->setPosition(gm->getPosition());
-            // }
+            gm->sprite.setPosition(gm->getPosition());
+            // gm->shape->setPosition(gm->getPosition());
+            // gm->text->setPosition(gm->getPosition());
           }
         }
-        for (engine::GameObject* gm : gObjects)gm->update();
+        for (engine::GameObject* gm : gObjs)gm->update();
 
-        for (engine::GameObject* gm : gObjects) {
-          if (gm->sprite != NULL) {
+        for (engine::GameObject* gm : gObjs) {
+          // if (gm->sprite) {
             printf("Drawing sprite\n");
-            window.draw(*gm->sprite);
-          } else if (gm->shape != NULL) {
-            window.draw(*gm->shape);
-          } else if (gm->text != NULL) {
-            window.draw(*gm->text);
-          }
+            window.draw(gm->sprite);
+          // } else if (gm->shape != NULL) {
+            // printf("Drawing shape\n");
+            // window.draw(*gm->shape);
+          // } else if (gm->text != NULL) {
+            // printf("Drawing text\n");
+            // window.draw(*gm->text);
+          // }
         }
       }
       // window.draw(shape);

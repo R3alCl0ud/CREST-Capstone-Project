@@ -1,0 +1,5 @@
+game:
+	gdb_executable: "/usr/local/bin/gdb"
+	debugger: "dbg-gdb"
+	path: "game"
+	cwd: "src"

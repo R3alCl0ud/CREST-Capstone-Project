@@ -8,8 +8,6 @@ namespace engine {
     this->bound = sf::IntRect(10, 10, 50, 30);
     this->sprite.setTextureRect(this->bound);
     this->sprite.setColor(sf::Color(255, 255, 255, 255));
-    // this->sprite
-    setPosition(0.0f,0.0f);
   }
 
   Player::Player(sf::IntRect bounds) {
@@ -44,5 +42,9 @@ namespace engine {
 
   double Player::deltaY() {
     return (double) this->physics2D.dy();
+  }
+
+  void Player::start() {
+    this->loadFromFile("images/DiscLoader.png");
   }
 }

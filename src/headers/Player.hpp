@@ -2,6 +2,7 @@
 #define CHAR_N  1
 // Include Physics lib
 #include "GameObject.h"
+#include <string.h>
 #include <SFML/Graphics/Sprite.hpp>
 
 namespace engine {
@@ -17,7 +18,7 @@ namespace engine {
     * @param FNAME
     * @desc Loads PNG file into the sprite texture
     */
-    void loadFromFile(char* FNAME) {
+    void loadFromFile(std::string FNAME) {
       this->tex.loadFromFile(FNAME);
       this->sprite.setTexture(this->tex);
     }
@@ -39,12 +40,13 @@ namespace engine {
       sf::Vector2f chng(getPosition().x + deltaX(), getPosition().y + deltaY());
     }
     void update();
+    void start();
   private:
       // Initialize to position (0, 0)
       // sf::Vector2f pos();
       sf::Texture tex;
       sf::IntRect bound;
-      sf::Sprite sprite;
+      // sf::Sprite sprite;
 
       double initialVelocity = 0.0;
 

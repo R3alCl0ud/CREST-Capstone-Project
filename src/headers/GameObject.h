@@ -9,10 +9,10 @@ namespace engine {
   class GameObject {
     public:
 
-      sf::Sprite* sprite;
+      sf::Sprite sprite;
       sf::Shape* shape;
       sf::Text* text;
-      sf::VertexArray* vertices;
+      // sf::VertexArray vertices;
 
       GameObject();
       virtual ~GameObject();

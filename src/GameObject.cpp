@@ -52,6 +52,9 @@ namespace engine {
   void GameObject::fixedUpdate() {
 
   }
+  void GameObject::start() {
+    
+  }
 
   engine::Level* GameObject::getLevel() {
     return this->curLevel;
