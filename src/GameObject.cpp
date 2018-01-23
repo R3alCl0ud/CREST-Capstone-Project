@@ -6,6 +6,10 @@ namespace engine {
     this->position = sf::Vector2f(0, 0);
     this->physics2D = Physics2D(this);
     this->rotation = 0;
+    sf::RectangleShape rect(sf::Vector2f(100, 50));
+    rect.setFillColor(sf::Color(255, 255, 255, 255));
+    this->shape = &rect;
+    // this->sprite = sf::Sprite();
   }
 
   GameObject::~GameObject() {
@@ -53,7 +57,7 @@ namespace engine {
 
   }
   void GameObject::start() {
-    
+
   }
 
   engine::Level* GameObject::getLevel() {

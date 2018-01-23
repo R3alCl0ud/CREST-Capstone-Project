@@ -6,8 +6,17 @@ namespace engine {
   Player::Player() {
     // Create a default rectangle bounds
     this->bound = sf::IntRect(10, 10, 50, 30);
+
+
+    // load default texture
+    this->loadFromFile("src/images/DiscLoader.png");
+
+    // set bounds and color
     this->sprite.setTextureRect(this->bound);
-    this->sprite.setColor(sf::Color(255, 255, 255, 255));
+    // this->sprite.setColor(sf::Color(255, 255, 255, 255));
+    this->sprite.setPosition(0,0);
+
+
   }
 
   Player::Player(sf::IntRect bounds) {
@@ -45,6 +54,6 @@ namespace engine {
   }
 
   void Player::start() {
-    this->loadFromFile("images/DiscLoader.png");
+    // this->loadFromFile("images/DiscLoader.png");
   }
 }

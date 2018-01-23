@@ -19,8 +19,12 @@ namespace engine {
     * @desc Loads PNG file into the sprite texture
     */
     void loadFromFile(std::string FNAME) {
-      this->tex.loadFromFile(FNAME);
-      this->sprite.setTexture(this->tex);
+      printf("Loading texture [%s]\n", FNAME.c_str());
+      if (this->tex.loadFromFile(FNAME)) {
+        this->sprite.setTexture(this->tex, true);
+      } else {
+        printf("failed to loading the texture [%s]\n", FNAME.c_str());
+      }
     }
 
     Player();

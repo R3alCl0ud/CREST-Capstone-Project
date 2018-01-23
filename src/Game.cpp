@@ -36,7 +36,7 @@ namespace engine {
     // When do we need to update next (in milliseconds)?
     sf::Int32 anUpdateNext = anUpdateClock.getElapsedTime().asMilliseconds();
     while (window.isOpen()) {
-      window.clear();
+      // window.clear();
       sf::Uint32 anUpdates = 0;
 
       while (window.pollEvent(event)) {
@@ -60,11 +60,12 @@ namespace engine {
             printf("Fixed Updating GM\n");
             gm->fixedUpdate();
             gm->sprite.setPosition(gm->getPosition());
-            // gm->shape->setPosition(gm->getPosition());
+            gm->shape->setPosition(gm->getPosition());
             // gm->text->setPosition(gm->getPosition());
           }
+          anUpdateNext += mUpdateRate;
         }
-        for (engine::GameObject* gm : gObjs)gm->update();
+        for (engine::GameObject* gm : gObjs) gm->update();
 
         for (engine::GameObject* gm : gObjs) {
           // if (gm->sprite) {
