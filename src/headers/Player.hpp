@@ -45,6 +45,7 @@ namespace engine {
     }
     void update();
     void start();
+    void draw(sf::RenderTarget& target);
   private:
       // Initialize to position (0, 0)
       // sf::Vector2f pos();

@@ -10,8 +10,8 @@ namespace engine {
   engine::Level* Game::gLevel = NULL;
   engine::GameObjectList Game::gObjects = engine::GameObjectList();
   Game::Game(const std::string title) {
-    windowTitle = title;
-    window.create(sf::VideoMode(800, 800), windowTitle);
+    mWindowTitle = title;
+    mWindow.create(sf::VideoMode(800, 800), mWindowTitle);
     mUpdateRate = 1.0f / 20.0f;
     gGame = this;
   }
@@ -35,16 +35,16 @@ namespace engine {
 
     // When do we need to update next (in milliseconds)?
     sf::Int32 anUpdateNext = anUpdateClock.getElapsedTime().asMilliseconds();
-    while (window.isOpen()) {
-      // window.clear();
+    while (mWindow.isOpen()) {
+      mWindow.clear();
       sf::Uint32 anUpdates = 0;
 
-      while (window.pollEvent(event)) {
+      while (mWindow.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
-          window.close();
+          mWindow.close();
         } else if (event.type == sf::Event::KeyPressed) {
           if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-            window.close();
+            mWindow.close();
           }
         }
       }
@@ -60,28 +60,31 @@ namespace engine {
             printf("Fixed Updating GM\n");
             gm->fixedUpdate();
             gm->sprite.setPosition(gm->getPosition());
-            gm->shape->setPosition(gm->getPosition());
+            gm->shape.setPosition(gm->getPosition());
             // gm->text->setPosition(gm->getPosition());
           }
           anUpdateNext += mUpdateRate;
         }
-        for (engine::GameObject* gm : gObjs) gm->update();
+        // for (engine::GameObject* gm : gObjs)
 
         for (engine::GameObject* gm : gObjs) {
-          // if (gm->sprite) {
-            printf("Drawing sprite\n");
-            window.draw(gm->sprite);
-          // } else if (gm->shape != NULL) {
-            // printf("Drawing shape\n");
-            // window.draw(*gm->shape);
-          // } else if (gm->text != NULL) {
-            // printf("Drawing text\n");
-            // window.draw(*gm->text);
+          // try {
+          //   engine::GameObject* gm = (engine::GameObject*) vgm;
+            printf("Updating gameobject\n");
+            gm->update();
+            printf("Drawing gameobject\n");
+            gm->draw(mWindow);
+          //
+          //   continue;
+          // } catch (std::exception) {
+          //
           // }
+
+
         }
       }
       // window.draw(shape);
-      window.display();
+      mWindow.display();
     }
   }
 

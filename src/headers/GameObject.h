@@ -10,7 +10,7 @@ namespace engine {
     public:
 
       sf::Sprite sprite;
-      sf::Shape* shape;
+      sf::RectangleShape shape;
       sf::Text* text;
       // sf::VertexArray vertices;
 
@@ -31,7 +31,9 @@ namespace engine {
       void rotate(float);
       engine::Level* getLevel();
       void setLevel(Level* level);
-
+      virtual void draw(sf::RenderTarget& target) {
+        printf("gm draw\n");
+      }
     protected:
       sf::Vector2f position;
       engine::Physics2D physics2D;

@@ -9,11 +9,11 @@ namespace engine {
 
 
     // load default texture
-    this->loadFromFile("src/images/DiscLoader.png");
+    // this->loadFromFile("src/images/DiscLoader.png");
 
     // set bounds and color
     this->sprite.setTextureRect(this->bound);
-    // this->sprite.setColor(sf::Color(255, 255, 255, 255));
+    this->sprite.setColor(sf::Color(255, 255, 255, 255));
     this->sprite.setPosition(0,0);
 
 
@@ -31,14 +31,23 @@ namespace engine {
     this->sprite.setColor(color);
   }
 
+  void Player::draw(sf::RenderTarget& target) {
+    printf("player draw\n");
+    target.draw(this->sprite);
+  }
+
   // default deconstructor
   Player::~Player() {}
 
+  void Player::start() {
+    // this->loadFromFile("images/DiscLoader.png");
+  }
+
   void Player::update() {
     engine::Game* g = engine::Game::GetGame();
-    sf::View view = g->window.getView();
+    sf::View view = g->mWindow.getView();
     view.setCenter(this->getPosition());
-    g->window.setView(view);
+    g->mWindow.setView(view);
   }
 
   void Player::setColor(sf::Color color) {
@@ -53,7 +62,5 @@ namespace engine {
     return (double) this->physics2D.dy();
   }
 
-  void Player::start() {
-    // this->loadFromFile("images/DiscLoader.png");
-  }
+
 }

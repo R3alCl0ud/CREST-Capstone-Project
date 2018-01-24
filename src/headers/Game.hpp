@@ -11,8 +11,8 @@
 namespace engine {
   class Game {
   public:
-    std::string windowTitle;
-    sf::RenderWindow window;
+    std::string mWindowTitle;
+    sf::RenderWindow mWindow;
 
     Game(const std::string title = "Game");
     virtual ~Game();
