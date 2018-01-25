@@ -35,6 +35,7 @@ namespace engine {
       void setLevel(Level* level);
       virtual void draw(sf::RenderTarget& target) {
         printf("gm draw\n");
+        target.draw(shape);
       }
     protected:
       sf::Vector2f position;

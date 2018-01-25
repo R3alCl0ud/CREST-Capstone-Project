@@ -4,11 +4,26 @@
 #include "headers/Player.hpp"
 #include "headers/Types.hpp"
 
+class Platform : public engine::GameObject {
+  public:
+    Platform() {
+
+    }
+    void setSize(float width, float height) {
+      shape.setSize(sf::Vector2f(width, height));
+      shape.setOrigin(width / 2, height / 2);
+    }
+};
+
 class TestLevel : public engine::Level {
   public:
     TestLevel() {
       engine::Player* player = new engine::Player;
+      Platform* plat = new Platform;
+      plat->setSize(1000, 50);
+      plat->setPosition(0, 200);
       addGameObject(player);
+      addGameObject(plat);
     }
 };
 
