@@ -1,5 +1,5 @@
-#include "headers/Collider2D.h"
+#include "headers/Collider2D.hpp"
 
 namespace engine {
-  
+
 }

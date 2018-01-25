@@ -9,13 +9,13 @@ namespace engine {
 
 
     // load default texture
-    // this->loadFromFile("src/images/DiscLoader.png");
+    // loadFromFile("src/images/DiscLoader.png");
 
     // set bounds and color
     this->sprite.setTextureRect(this->bound);
     this->sprite.setColor(sf::Color(255, 255, 255, 255));
-    this->sprite.setPosition(0,0);
-
+    sprite.setPosition(0,0);
+    sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height / 2);
 
   }
 
@@ -41,6 +41,10 @@ namespace engine {
 
   void Player::start() {
     // this->loadFromFile("images/DiscLoader.png");
+  }
+
+  void Player::fixedUpdate() {
+    
   }
 
   void Player::update() {

@@ -7,8 +7,8 @@
 class TestLevel : public engine::Level {
   public:
     TestLevel() {
-      engine::Player player = engine::Player();
-      addGameObject(&player);
+      engine::Player* player = new engine::Player;
+      addGameObject(player);
     }
 };
 

@@ -1,7 +1,7 @@
 #ifndef CHAR_N
 #define CHAR_N  1
 // Include Physics lib
-#include "GameObject.h"
+#include "GameObject.hpp"
 #include <string.h>
 #include <SFML/Graphics/Sprite.hpp>
 
@@ -45,6 +45,7 @@ namespace engine {
     }
     void update();
     void start();
+    void fixedUpdate();
     void draw(sf::RenderTarget& target);
   private:
       // Initialize to position (0, 0)

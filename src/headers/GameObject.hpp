@@ -2,7 +2,7 @@
 #define GAMEOBJECT 1
 
 #include <SFML/Graphics.hpp>
-#include "Physics2D.h"
+#include "Physics2D.hpp"
 
 namespace engine {
 
@@ -16,9 +16,9 @@ namespace engine {
 
       GameObject();
       virtual ~GameObject();
-      void update();
-      void fixedUpdate();
-      void start();
+      virtual void update();
+      virtual void fixedUpdate();
+      virtual void start();
       engine::Physics2D getPhysics();
       sf::Vector2f getPosition();
       void setPosition(float x, float y);
@@ -29,6 +29,8 @@ namespace engine {
       void setRotationAsDeg(float angle);
       void rotateAsDeg(float angle);
       void rotate(float);
+      void move(float x, float y);
+      void move(sf::Vector2f pos);
       engine::Level* getLevel();
       void setLevel(Level* level);
       virtual void draw(sf::RenderTarget& target) {

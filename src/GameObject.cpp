@@ -1,13 +1,13 @@
-#include "headers/GameObject.h"
+#include "headers/GameObject.hpp"
 
 namespace engine {
 
-  GameObject::GameObject() {
+  GameObject::GameObject() : shape(sf::Vector2f(100, 50)) {
     this->position = sf::Vector2f(0, 0);
     this->physics2D = Physics2D(this);
     this->rotation = 0;
     // sf::RectangleShape rect(sf::Vector2f(100, 50));
-    shape.setSize(sf::Vector2f(100, 50));
+    // shape.setSize(sf::Vector2f(100, 50));
     shape.setFillColor(sf::Color(255, 255, 255, 255));
     // this->shape = rect;
     // this->sprite = sf::Sprite();
@@ -60,6 +60,14 @@ namespace engine {
 
   void GameObject::start() {
 
+  }
+
+  void GameObject::move(float offsetX, float offsetY) {
+    move(sf::Vector2f(offsetX, offsetY));
+  }
+
+  void GameObject::move(sf::Vector2f offset) {
+    this->position += offset;
   }
 
   // void GameObject::draw(sf::RenderTarget& target) {

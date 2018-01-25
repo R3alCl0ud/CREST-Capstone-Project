@@ -1,7 +1,7 @@
 #ifndef LEVEL
 #define LEVEL 1
 #include <SFML/Graphics.hpp>
-#include "GameObject.h"
+#include "GameObject.hpp"
 #include <stdlib.h>
 #include <algorithm>
 #include <list>
