@@ -24,12 +24,13 @@ namespace engine {
       Physics2D();
       Physics2D(GameObject* parent);
       Physics2D(float dx, float dy);
-      void addForce(sf::Vector2f *pos);
+      void addForce(sf::Vector2f *pos, engine::Space space=engine::World);
       void setPrecision(int p);
       double integral(double(*f)(double x), double a, double b, int n);
-      float dx();
-      float dy();
-
+      float deltaX();
+      float deltaY();
+      double instantInertia(sf::Vector2f &pos, double startPos, double mass, double initVelocity, double deltaTime =  1);
+      double jump(double initVelocity, double ntime, double mass);
     private:
       engine::GameObject* parent;
       double vh, vv, mass, gravity;
@@ -39,7 +40,6 @@ namespace engine {
       double static normalCurve(double t) {
         return std::pow(E_C, ((t * t) * -1));
       }
-      double instantInertia(sf::Vector2f &pos, double startPos, double mass, double initVelocity);
 
     };
 }

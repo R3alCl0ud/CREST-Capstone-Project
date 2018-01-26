@@ -12,8 +12,6 @@ namespace engine {
     // set bounds and color
     this->sprite.setTextureRect(this->bound);
     this->sprite.setColor(sf::Color(255, 255, 255, 255));
-    // sprite.setPosition(0,0);
-    // sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height / 2);
     shape.setSize(sf::Vector2f(50, 200));
     shape.setOrigin(25, 100);
   }
@@ -47,6 +45,7 @@ namespace engine {
   }
 
   void Player::update() {
+    // physics2D.addForce(sf::Vector2f(0, G_C) * (float)engine::Game::DeltaTime());
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
       move(2, 0);
     }
@@ -70,11 +69,11 @@ namespace engine {
   }
 
   double Player::deltaX() {
-    return (double) this->physics2D.dx();
+    return (double) this->physics2D.deltaX();
   }
 
   double Player::deltaY() {
-    return (double) this->physics2D.dy();
+    return (double) this->physics2D.deltaY();
   }
 
 

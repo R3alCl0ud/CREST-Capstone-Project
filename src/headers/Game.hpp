@@ -20,13 +20,18 @@ namespace engine {
     static Level* GetLevel(void);
     static void SetLevel(engine::Level* level);
     static GameObjectList GetGameObjects(void);
-
+    /**
+     * Returns the time since the last frame was drawn
+     *
+     *
+     */
+    static double DeltaTime(void);
     int run(void);
   protected:
     void GameLoop(void);
   private:
     float mUpdateRate;
-
+    static sf::Clock gFrameClock;
     static Game* gGame;
     static engine::Level* gLevel;
     static GameObjectList gObjects;

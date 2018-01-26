@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <algorithm>
 #include <list>
+#include "Space.hpp"
 
 namespace engine {
 

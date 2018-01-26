@@ -8,6 +8,8 @@ namespace engine {
 
     private:
 
+    protected:
+      
   };
 }
 #endif

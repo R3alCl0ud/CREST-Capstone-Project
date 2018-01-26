@@ -5,7 +5,6 @@
 #include "Physics2D.hpp"
 
 namespace engine {
-
   class GameObject {
     public:
 
@@ -19,22 +18,26 @@ namespace engine {
       virtual void update();
       virtual void fixedUpdate();
       virtual void start();
-      engine::Physics2D getPhysics();
+      engine::Level* getLevel();
       sf::Vector2f getPosition();
-      void setPosition(float x, float y);
-      void setPosition(sf::Vector2f pos);
       float getRotation();
       float getRotationAsDeg();
+      engine::Physics2D getPhysics();
+      void setLevel(Level* level);
+      void setPosition(float x, float y);
+      void setPosition(sf::Vector2f pos);
       void setRotation(float angle);
       void setRotationAsDeg(float angle);
       void rotateAsDeg(float angle);
       void rotate(float);
       void move(float x, float y);
       void move(sf::Vector2f pos);
-      engine::Level* getLevel();
-      void setLevel(Level* level);
       virtual void draw(sf::RenderTarget& target) {
         printf("gm draw\n");
+        if (sprite.getTexture() != NULL) {
+          target.draw(sprite);
+          return;
+        }
         target.draw(shape);
       }
     protected:

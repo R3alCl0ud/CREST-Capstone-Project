@@ -9,6 +9,7 @@ namespace engine {
   Game* Game::gGame = NULL;
   engine::Level* Game::gLevel = NULL;
   engine::GameObjectList Game::gObjects = engine::GameObjectList();
+  sf::Clock Game::gFrameClock = sf::Clock();
   Game::Game(const std::string title) {
     mWindowTitle = title;
     mWindow.create(sf::VideoMode(800, 800), mWindowTitle);
@@ -59,34 +60,26 @@ namespace engine {
           for (engine::GameObject* gm : gObjs) {
             printf("Fixed Updating GM\n");
             gm->fixedUpdate();
-            // gm->text->setPosition(gm->getPosition());
           }
           anUpdateNext += mUpdateRate;
         }
-        // for (engine::GameObject* gm : gObjs)
-
+        gFrameClock.restart();
         for (engine::GameObject* gm : gObjs) {
-          // try {
-          //   engine::GameObject* gm = (engine::GameObject*) vgm;
-            printf("Updating gameobject\n");
-            gm->update();
-            printf("Updating gm drawable positions\n");
-            gm->sprite.setPosition(gm->getPosition());
-            gm->shape.setPosition(gm->getPosition());
-            printf("Drawing gameobject\n");
-            gm->draw(mWindow);
-          //
-          //   continue;
-          // } catch (std::exception) {
-          //
-          // }
-
-
+          printf("Updating gameobject\n");
+          gm->update();
+          printf("Updating gm drawable positions\n");
+          gm->sprite.setPosition(gm->getPosition());
+          gm->shape.setPosition(gm->getPosition());
+          printf("Drawing gameobject\n");
+          gm->draw(mWindow);
         }
       }
-      // window.draw(shape);
       mWindow.display();
     }
+  }
+
+  double Game::DeltaTime(void) {
+    return (double) gFrameClock.getElapsedTime().asMilliseconds() / 1000.0;
   }
 
   engine::Level* Game::GetLevel(void) {
