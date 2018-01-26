@@ -6,8 +6,6 @@ namespace engine {
   Player::Player() {
     // Create a default rectangle bounds
     this->bound = sf::IntRect(10, 10, 50, 30);
-
-
     // load default texture
     // loadFromFile("src/images/DiscLoader.png");
 
@@ -49,6 +47,18 @@ namespace engine {
   }
 
   void Player::update() {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+      move(2, 0);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+      move(0, -2);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+      move(-2, 0);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+      move(0, 2);
+    }
     engine::Game* g = engine::Game::GetGame();
     sf::View view = g->mWindow.getView();
     view.setCenter(this->getPosition());

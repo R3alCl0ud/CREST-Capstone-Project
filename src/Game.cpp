@@ -59,8 +59,6 @@ namespace engine {
           for (engine::GameObject* gm : gObjs) {
             printf("Fixed Updating GM\n");
             gm->fixedUpdate();
-            gm->sprite.setPosition(gm->getPosition());
-            gm->shape.setPosition(gm->getPosition());
             // gm->text->setPosition(gm->getPosition());
           }
           anUpdateNext += mUpdateRate;
@@ -72,6 +70,9 @@ namespace engine {
           //   engine::GameObject* gm = (engine::GameObject*) vgm;
             printf("Updating gameobject\n");
             gm->update();
+            printf("Updating gm drawable positions\n");
+            gm->sprite.setPosition(gm->getPosition());
+            gm->shape.setPosition(gm->getPosition());
             printf("Drawing gameobject\n");
             gm->draw(mWindow);
           //
