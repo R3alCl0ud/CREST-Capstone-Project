@@ -34,7 +34,7 @@ namespace engine {
     private:
       engine::GameObject* parent;
       double vh, vv, mass, gravity;
-      sf::Vector2f velocity;
+      sf::Vector2f velocity; // velocity in meters / second
       float x, y, _dx, _dy;
       int precision;
       double static normalCurve(double t) {
