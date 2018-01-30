@@ -14,6 +14,8 @@ namespace engine {
   }
 
   GameObject::~GameObject() {
+    // shape.~shape();
+    //
     // this->getLevel()->removeGameObject(this);
   }
 

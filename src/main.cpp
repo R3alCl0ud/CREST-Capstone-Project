@@ -3,11 +3,14 @@
 #include "headers/Level.hpp"
 #include "headers/Player.hpp"
 #include "headers/Types.hpp"
+#include "headers/RectangleCollider2D.hpp"
 
 class Platform : public engine::GameObject {
   public:
     Platform() {
-
+      engine::RectangleCollider2D* rect = new engine::RectangleCollider2D(this);
+      rect->setSize(sf::Vector2f(1000, 50));
+      this->collider2D = *rect;
     }
     void setSize(float width, float height) {
       shape.setSize(sf::Vector2f(width, height));

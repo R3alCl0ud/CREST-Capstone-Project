@@ -2,6 +2,7 @@
 #define CHAR_N  1
 // Include Physics lib
 #include "GameObject.hpp"
+#include "RectangleCollider2D.hpp"
 #include <string.h>
 #include <SFML/Graphics/Sprite.hpp>
 
