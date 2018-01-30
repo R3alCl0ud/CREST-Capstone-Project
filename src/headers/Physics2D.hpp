@@ -24,6 +24,7 @@ namespace engine {
       Physics2D();
       Physics2D(GameObject* parent);
       Physics2D(float dx, float dy);
+      ~Physics2D();
       void addForce(sf::Vector2f *pos, engine::Space space=engine::World);
       void setPrecision(int p);
       double integral(double(*f)(double x), double a, double b, int n);
@@ -39,6 +40,15 @@ namespace engine {
       int precision;
       double static normalCurve(double t) {
         return std::pow(E_C, ((t * t) * -1));
+      }
+
+      // If return velocity pos + (velocity * deltatime)
+      /*
+\frac{\left(-\frac{x}{2}+v_1G\right)}{\left|v_2+1\right|}
+      */
+      double parabolicGravity(double v_velocity, double h_velocity, double time) {
+        double val = (-1 * (time / 2.0) + (v_velocity * G)) / abs(h_velocity + 1);
+        return val >= 0.0 ? val : 0.0;
       }
 
     };
