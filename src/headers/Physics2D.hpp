@@ -46,8 +46,8 @@ namespace engine {
       /*
 \frac{\left(-\frac{x}{2}+v_1G\right)}{\left|v_2+1\right|}
       */
-      double parabolicGravity(double v_velocity, double h_velocity, double time) {
-        double val = (-1 * (time / 2.0) + (v_velocity * G)) / abs(h_velocity + 1);
+      double parabolicGravity(double v_velocity, double h_velocity, double elapsedtime) {
+        double val = (-1 * (elapsedtime / 2.0) + (v_velocity * G)) / abs(h_velocity + 1);
         return val >= 0.0 ? val : 0.0;
       }
 
