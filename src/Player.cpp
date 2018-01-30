@@ -14,6 +14,9 @@ namespace engine {
     this->sprite.setColor(sf::Color(255, 255, 255, 255));
     shape.setSize(sf::Vector2f(50, 200));
     shape.setOrigin(25, 100);
+    RectangleCollider2D* rect = new engine::RectangleCollider2D(this);
+    rect->setSize(sf::Vector2f(50, 200));
+    this->collider2D = *rect;
   }
 
   Player::Player(sf::IntRect bounds) {
