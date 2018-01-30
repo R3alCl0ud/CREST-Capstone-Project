@@ -12,7 +12,7 @@ namespace engine {
   sf::Clock Game::gFrameClock = sf::Clock();
   Game::Game(const std::string title) {
     mWindowTitle = title;
-    mWindow.create(sf::VideoMode(800, 800), mWindowTitle);
+    mWindow.create(sf::VideoMode(1280, 720), mWindowTitle);
     mUpdateRate = 1.0f / 20.0f;
     gGame = this;
   }
