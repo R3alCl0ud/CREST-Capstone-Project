@@ -16,7 +16,7 @@ namespace engine {
     shape.setOrigin(25, 100);
     RectangleCollider2D* rect = new engine::RectangleCollider2D(this);
     rect->setSize(sf::Vector2f(50, 200));
-    this->collider2D = *rect;
+    this->collider2D = rect;
   }
 
   Player::Player(sf::IntRect bounds) {

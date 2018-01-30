@@ -45,7 +45,7 @@ namespace engine {
       engine::Physics2D physics2D;
       engine::Level* curLevel;
       float rotation;
-      engine::Collider2D collider2D;
+      engine::Collider2D* collider2D;
     private:
   };
 }

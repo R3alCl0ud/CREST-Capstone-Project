@@ -1,5 +1,6 @@
 #include "headers/RectangleCollider2D.hpp"
 
+
 namespace engine {
 
 
@@ -12,7 +13,6 @@ namespace engine {
   }
 
   RectangleCollider2D::~RectangleCollider2D() {
-    // this->gameObject = NULL;
   }
 
   bool RectangleCollider2D::intersects(RectangleCollider2D rectColl2D) {

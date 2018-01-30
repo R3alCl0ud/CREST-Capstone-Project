@@ -17,16 +17,16 @@ namespace engine {
 
   // public:
   Physics2D::~Physics2D() {
-    try {
-      delete &this->x;
-      delete &this->y;
-      delete &this->_dx;
-      delete &this->_dy;
-      delete &this->velocity;
-      delete &this->precision;
-    } catch (std::exception e) {
-      std::cout << "Couldn't delete PHYSICS values" << std::endl;
-    }
+    // try {
+    //   delete &this->x;
+    //   delete &this->y;
+    //   delete &this->_dx;
+    //   delete &this->_dy;
+    //   delete &this->velocity;
+    //   delete &this->precision;
+    // } catch (std::exception e) {
+    //   std::cout << "Couldn't delete PHYSICS values" << std::endl;
+    // }
   }
 
   Physics2D::Physics2D() {
