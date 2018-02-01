@@ -24,7 +24,7 @@ class TestLevel : public engine::Level {
       engine::Player* player = new engine::Player;
       Platform* plat = new Platform;
       plat->setSize(1000, 50);
-      plat->setPosition(0, 200);
+      plat->setPosition(0, 245);
       addGameObject(player);
       addGameObject(plat);
     }

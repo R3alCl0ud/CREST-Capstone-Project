@@ -12,11 +12,12 @@ namespace engine {
     // set bounds and color
     this->sprite.setTextureRect(this->bound);
     this->sprite.setColor(sf::Color(255, 255, 255, 255));
-    shape.setSize(sf::Vector2f(50, 200));
-    shape.setOrigin(25, 100);
+    shape.setSize(sf::Vector2f(50, 125));
+    shape.setOrigin(25, 62.5);
     RectangleCollider2D* rect = new engine::RectangleCollider2D(this);
-    rect->setSize(sf::Vector2f(50, 200));
+    rect->setSize(sf::Vector2f(50, 125));
     this->collider2D = rect;
+    physics2D.useGravity(true);
   }
 
   Player::Player(sf::IntRect bounds) {
@@ -32,7 +33,7 @@ namespace engine {
   }
 
   void Player::draw(sf::RenderTarget& target) {
-    printf("player draw\n");
+    // printf("player draw\n");
     target.draw(this->shape);
   }
 
@@ -40,26 +41,33 @@ namespace engine {
   Player::~Player() {}
 
   void Player::start() {
-    // this->loadFromFile("images/DiscLoader.png");
+    // this->physics2D.addForce(sf::Vector2f(0.2, 0));
   }
 
   void Player::fixedUpdate() {
+    // printf("player fixed\n");
+    // engine::Physics2D px = getPhysics();
 
+    // this->move(this->physics2D.deltaV() * (float) 25);
+  }
+
+  void Player::onCollision(engine::RectangleCollider2D* collider2D) {
+    // printf("Player collided with something\n");
   }
 
   void Player::update() {
     // physics2D.addForce(sf::Vector2f(0, G_C) * (float)engine::Game::DeltaTime());
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-      move(2, 0);
+      move(0.5, 0);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-      move(0, -2);
+      move(0, -0.5);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-      move(-2, 0);
+      move(-0.5, 0);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-      move(0, 2);
+      move(0, 0.5);
     }
     engine::Game* g = engine::Game::GetGame();
     sf::View view = g->mWindow.getView();

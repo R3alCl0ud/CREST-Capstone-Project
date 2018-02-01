@@ -1,4 +1,5 @@
 #include "headers/Physics2D.hpp"
+#include "headers/Game.hpp"
 
 namespace engine {
 
@@ -8,6 +9,7 @@ namespace engine {
     this->parent = parent;
     this->velocity = sf::Vector2f();
     this->precision = 10;
+    this->isG = false;
   }
   // https://www.desmos.com/calculator/5xew1bmpgo
 
@@ -48,12 +50,13 @@ namespace engine {
     this->precision = 10;
   }
 
-  void Physics2D::addForce(sf::Vector2f *pos, engine::Space space) {
+  void Physics2D::addForce(sf::Vector2f force, engine::Space space) {
     if (space == engine::World) {
-      this->velocity.x += pos->x;
-      this->velocity.y += pos->y;
+      // printf("%f\n", force.y);
+      this->velocity += force;
     } else {
-      // this
+      this->velocity.x += (cos(parent->getRotationAsDeg()) * force.x) - (sin(parent->getRotationAsDeg()) * force.y);
+      this->velocity.y += (sin(parent->getRotationAsDeg()) * force.x) + (cos(parent->getRotationAsDeg()) * force.y);
     }
   }
 
@@ -63,6 +66,14 @@ namespace engine {
 
   float Physics2D::deltaX() { return this->_dx; }
   float Physics2D::deltaY() { return this->_dy; }
+
+  sf::Vector2f Physics2D::deltaV() {
+    return this->velocity * engine::Game::DeltaPhysicsTime();
+  }
+
+  sf::Vector2f Physics2D::getVelocity() {
+    return this->velocity;
+  }
 
   double Physics2D::integral(double(*f)(double x), double a, double b, int n) {
     double step = (b - a) / n;  // Creates width of each rectangle

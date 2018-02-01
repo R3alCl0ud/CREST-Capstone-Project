@@ -4,11 +4,12 @@
 // Write Code here
 namespace engine {
 
-  class RectangleCollider2D : public Collider2D {
+  class RectangleCollider2D  {
     public:
       RectangleCollider2D(engine::GameObject* gameObject);
       virtual ~RectangleCollider2D();
 
+      bool intersects(Collider2D collider2D);
       bool intersects(RectangleCollider2D rectangleColl2D);
 
       void setSize(sf::Vector2f size=sf::Vector2f(0,0));
@@ -16,7 +17,9 @@ namespace engine {
 
     private:
       RectangleCollider2D();
+    
     protected:
+      engine::GameObject* gameObject;
       sf::Vector2f size;
   };
 }

@@ -10,6 +10,7 @@ namespace engine {
   class Player : public engine::GameObject {
   public:
     void changePosition(const sf::Vector2f &npos);
+    void onCollision(engine::RectangleCollider2D* collider2D);
     double deltaX();
     double deltaY();
 

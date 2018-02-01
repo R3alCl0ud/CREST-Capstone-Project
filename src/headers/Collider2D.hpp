@@ -9,6 +9,8 @@
 namespace engine {
   class Collider2D {
     public:
+      Collider2D();
+      Collider2D(engine::GameObject* gameObject);
       virtual ~Collider2D();
       virtual bool intersects(Collider2D collider2D);
 

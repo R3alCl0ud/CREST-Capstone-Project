@@ -13,6 +13,7 @@ namespace engine {
   public:
     std::string mWindowTitle;
     sf::RenderWindow mWindow;
+    sf::Uint16 mPixelMeters;
 
     Game(const std::string title = "Game");
     virtual ~Game();
@@ -22,16 +23,23 @@ namespace engine {
     static GameObjectList GetGameObjects(void);
     /**
      * Returns the time since the last frame was drawn
-     *
-     *
      */
-    static double DeltaTime(void);
+    static float DeltaTime(void);
+    /**
+     * Returns the time since the last physics update
+     */
+    static float DeltaPhysicsTime(void);
     int run(void);
   protected:
     void GameLoop(void);
+    void RunPhysicsUpdates(void);
   private:
     float mUpdateRate;
+    int mMaxUpdates;
+    int mMaxPhysicsUpdates;
+    float mPhysicsUpdateRate;
     static sf::Clock gFrameClock;
+    static sf::Clock gPhysicsClock;
     static Game* gGame;
     static engine::Level* gLevel;
     static GameObjectList gObjects;
