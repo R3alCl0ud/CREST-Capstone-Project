@@ -51,7 +51,7 @@ namespace engine {
     vel <<"Velocity: <" <<std::fixed<< physics2D.getVelocity().x  << ", " <<std::fixed<< physics2D.getVelocity().y  << ">";
     std::ostringstream pos;
     pos.precision(4);
-    pos << "Position: (" <<std::fixed<<position.x<<", "<<std::fixed<<position.y<<")";
+    pos << "Position: (" <<std::fixed<<position.x / 75<<", "<<std::fixed<<position.y/75<<")";
     // return
     sf::Text text( vel.str(), textFont);
     sf::Text textPOS(pos.str(), textFont);
@@ -71,7 +71,7 @@ namespace engine {
   Player::~Player() {}
 
   void Player::start() {
-    physics2D.addForce(sf::Vector2f(10, 0));
+    // physics2D.addForce(sf::Vector2f(10, 0));
   }
 
   void Player::fixedUpdate() {
@@ -95,16 +95,16 @@ namespace engine {
     // physics2D.addForce(sf::Vector2f(0, G_C) * (float)engine::Game::DeltaTime());
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && canJump) {
-      physics2D.addForce(sf::Vector2f(0, -10));
+      physics2D.addForce(sf::Vector2f(0, -12.5));
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && physics2D.getVelocity().x > -4.375f) {
-      physics2D.addForce(sf::Vector2f(-4.375 * 10 * engine::Game::DeltaTime(), 0));
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && physics2D.getVelocity().x > -6.0f) {
+      physics2D.addForce(sf::Vector2f(-6 * 15 * engine::Game::DeltaTime(), 0));
       // move(-4.375, 0);
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && physics2D.getVelocity().x < 4.375f) {
-      physics2D.addForce(sf::Vector2f(4.375 * 10 * engine::Game::DeltaTime(), 0));
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && physics2D.getVelocity().x < 6.0f) {
+      physics2D.addForce(sf::Vector2f(6 * 15 * engine::Game::DeltaTime(), 0));
       // move(4.375, 0);
     }
 

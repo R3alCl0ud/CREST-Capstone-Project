@@ -125,10 +125,10 @@ namespace engine {
                 else if ((circle2D = dynamic_cast<engine::CircleCollider2D*>(ogm->getCollider2D()))) collision = gm->getCollider2D()->intersects(circle2D);
                 else if ((poly2D = dynamic_cast<engine::PolygonCollider2D*>(ogm->getCollider2D()))) collision = gm->getCollider2D()->intersects(poly2D);
                 else collision = gm->getCollider2D()->intersects(ogm->getCollider2D());
-                collisionDown = collision && gm->getPosition().y < ogm->getPosition().y;
-                collisionUp = collision && gm->getPosition().y > ogm->getPosition().y;
-                collisionRight = collision && gm->getPosition().x < ogm->getPosition().x;
-                collisionLeft = collision && gm->getPosition().x > ogm->getPosition().x;
+                collisionDown = collisionDown || (collision && gm->getPosition().y < ogm->getPosition().y);
+                collisionUp = (collision && gm->getPosition().y > ogm->getPosition().y);
+                collisionRight = (collision && !collisionDown && gm->getPosition().x < ogm->getPosition().x);
+                collisionLeft = (collision && !collisionDown && gm->getPosition().x > ogm->getPosition().x);
                 if (collision) {
                   gm->onCollision(ogm->getCollider2D());
                   if (rect2D) gm->onCollision(rect2D);
@@ -147,8 +147,7 @@ namespace engine {
             sf::Vector2f velocity = p2d->getVelocity();
             if (!collisionDown) {
               if (p2d->hasGravity()) {
-                  // printf("applying gravity\n");
-                  p2d->addForce(sf::Vector2f(0.0f, (G_C * 2 * mPhysicsUpdateRate /*DeltaPhysicsTime()*/)));
+                  p2d->addForce(sf::Vector2f(0.0f, (G_C * 2 * DeltaPhysicsTime())));
               }
               velocity = p2d->getVelocity();
               if (velocity.y > 0.0f) {
@@ -156,11 +155,11 @@ namespace engine {
               }
             } else {
               if (velocity.x > 0.0f) {
-                p2d->addForce(sf::Vector2f(-0.8f * (velocity.x) * DeltaPhysicsTime(), 0.0f)); // * DeltaPhysicsTime()
+                p2d->addForce(sf::Vector2f(-6 * (velocity.x) * DeltaPhysicsTime(), 0.0f)); // * DeltaPhysicsTime()
               }
               velocity = p2d->getVelocity();
               if (velocity.x < 0.0f) {
-                p2d->addForce(sf::Vector2f(-0.8f * (velocity.x) * DeltaPhysicsTime(), 0.0f)); // * DeltaPhysicsTime()
+                p2d->addForce(sf::Vector2f(-6 * (velocity.x) * DeltaPhysicsTime(), 0.0f)); // * DeltaPhysicsTime()
               }
             }
             velocity = p2d->getVelocity();
@@ -222,8 +221,9 @@ namespace engine {
 
       if (anSecondCounter.getElapsedTime().asSeconds() > 0.25f) {
         // printf("Velocity<%f, %f>\n", p2d->getVelocity().x, p2d->getVelocity().y);
-        printf("FPS: %d, DeltaTime: %f\n", FPS = frames * 4, DeltaTime());
+        // printf("FPS: %d, DeltaTime: %f\n", , DeltaTime());
         // printf("Physics speed: %f\n", DeltaPhysicsTime() * 205000);
+        FPS = frames * 4;
         anSecondCounter.restart();
         frames = 0;
       }
