@@ -14,10 +14,13 @@ namespace engine {
     this->sprite.setColor(sf::Color(255, 255, 255, 255));
     shape.setSize(sf::Vector2f(50, 125));
     shape.setOrigin(25, 62.5);
+    shape.setOutlineColor(sf::Color(200,200,200));
+    shape.setOutlineThickness(-5.0f);
     RectangleCollider2D* rect = new engine::RectangleCollider2D(this);
     rect->setSize(sf::Vector2f(50, 125));
     this->collider2D = rect;
     physics2D.useGravity(true);
+    this->jumpPressed = false;
   }
 
   Player::Player(sf::IntRect bounds) {
@@ -41,7 +44,7 @@ namespace engine {
   Player::~Player() {}
 
   void Player::start() {
-    // this->physics2D.addForce(sf::Vector2f(0.2, 0));
+    physics2D.addForce(sf::Vector2f(10, 0));
   }
 
   void Player::fixedUpdate() {
@@ -51,24 +54,33 @@ namespace engine {
     // this->move(this->physics2D.deltaV() * (float) 25);
   }
 
-  void Player::onCollision(engine::RectangleCollider2D* collider2D) {
+  void Player::onCollisionEnter(engine::Collider2D* collider2D) {
     // printf("Player collided with something\n");
+    if (!canJump) canJump = true;
+  }
+
+  void Player::onCollisionExit(engine::Collider2D* collider2D) {
+    // printf("Player collided with something\n");
+    if (canJump) canJump = false;
   }
 
   void Player::update() {
     // physics2D.addForce(sf::Vector2f(0, G_C) * (float)engine::Game::DeltaTime());
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-      move(0.5, 0);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && canJump) {
+      physics2D.addForce(sf::Vector2f(0, -10));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-      move(0, -0.5);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && physics2D.getVelocity().x > -4.375f) {
+      // physics2D.addForce(sf::Vector2f(-4.375 * 10 * engine::Game::DeltaTime(), 0));
+      move(-4.375, 0);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-      move(-0.5, 0);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && physics2D.getVelocity().x < 4.375f) {
+      // physics2D.addForce(sf::Vector2f(4.375 * 10 * engine::Game::DeltaTime(), 0));
+      move(4.375, 0);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-      move(0, 0.5);
-    }
+
     engine::Game* g = engine::Game::GetGame();
     sf::View view = g->mWindow.getView();
     view.setCenter(this->getPosition());

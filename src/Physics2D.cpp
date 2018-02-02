@@ -101,7 +101,7 @@ namespace engine {
 
   // Returns new velocity at given moment given the total mass
   double Physics2D::instantInertia(sf::Vector2f &pos, double startPos, double mass, double initVelocity, double deltaTime) {
-    double input = ((double)pos.x / 75.0) - (startPos + mass) ;
+    double input = ((double)pos.x / engine::Game::GetPixelMeters()) - (startPos + mass);
     double intPart = this->integral(*normalCurve, 0.0, (input * sqrt(2) / (2 * mass)), this->precision);
     return ((intPart * ((-2 * deltaTime) * sqrt(PI / 2))) + (1 / 2)) / initVelocity;
   }

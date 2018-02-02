@@ -10,7 +10,9 @@ namespace engine {
   class Player : public engine::GameObject {
   public:
     void changePosition(const sf::Vector2f &npos);
-    void onCollision(engine::RectangleCollider2D* collider2D);
+    // void onCollision(engine::RectangleCollider2D* collider2D);
+    void onCollisionEnter(engine::Collider2D* collider2D);
+    void onCollisionExit(engine::Collider2D* collider2D);
     double deltaX();
     double deltaY();
 
@@ -59,6 +61,9 @@ namespace engine {
       double initialVelocity = 0.0;
 
       int width = 0;
+  protected:
+    bool jumpPressed = false;
+    bool canJump = false;
 
   };
 }

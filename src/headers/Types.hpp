@@ -6,7 +6,9 @@
 #include <stdio.h>
 #include <algorithm>
 #include <list>
+#include <math.h>
 #include "Space.hpp"
+#include <SFML/System/Vector2.hpp>
 
 namespace engine {
 
@@ -17,13 +19,17 @@ namespace engine {
   class Game;
   class GameObject;
   class Level;
-  class Collider2D;
   class Physics2D;
+  class Collider2D;
+  class CircleCollider2D;
   class RectangleCollider2D;
+  class PolygonCollider2D;
 
   // typedefs
   typedef std::list<GameObject*> GameObjectList;
-
+  typedef std::list<Collider2D*> Collider2DList;
+  typedef std::list<RectangleCollider2D*> RectangleCollider2DList;
+  typedef std::list<sf::Vector2f> Vector2fList;
 }
 
 #endif

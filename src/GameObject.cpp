@@ -6,19 +6,12 @@ namespace engine {
     this->position = sf::Vector2f(0, 0);
     this->physics2D = Physics2D(this);
     this->rotation = 0;
-    // this->collider2D = NULL;
-    // sf::RectangleShape rect(sf::Vector2f(100, 50));
-    // shape.setSize(sf::Vector2f(100, 50));
     shape.setFillColor(sf::Color(255, 255, 255, 255));
-    // this->shape = rect;
-    // this->sprite = sf::Sprite();
     start();
   }
 
   GameObject::~GameObject() {
-    // shape.~shape();
-    //
-    // this->getLevel()->removeGameObject(this);
+
   }
 
   float GameObject::getRotation() {
@@ -78,11 +71,6 @@ namespace engine {
     this->position += offset;
   }
 
-  // void GameObject::draw(sf::RenderTarget& target) {
-  //   printf("gm draw\n");
-  //   target.draw(sprite);
-  // }
-
   engine::Level* GameObject::getLevel() {
     return this->curLevel;
   }
@@ -90,7 +78,7 @@ namespace engine {
   void GameObject::setLevel(Level* level) {
     this->curLevel = level;
   }
-  engine::RectangleCollider2D* GameObject::getCollider2D() {
+  engine::Collider2D* GameObject::getCollider2D() {
     return this->collider2D;
   }
 

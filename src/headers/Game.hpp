@@ -6,6 +6,9 @@
 #include "GameObject.hpp"
 #include "Level.hpp"
 #include "Types.hpp"
+#include "RectangleCollider2D.hpp"
+#include "CircleCollider2D.hpp"
+#include "PolygonCollider2D.hpp"
 #include <string.h>
 
 namespace engine {
@@ -13,13 +16,12 @@ namespace engine {
   public:
     std::string mWindowTitle;
     sf::RenderWindow mWindow;
-    sf::Uint16 mPixelMeters;
+
 
     Game(const std::string title = "Game");
     virtual ~Game();
     static Game* GetGame(void);
     static Level* GetLevel(void);
-    static void SetLevel(engine::Level* level);
     static GameObjectList GetGameObjects(void);
     /**
      * Returns the time since the last frame was drawn
@@ -29,6 +31,9 @@ namespace engine {
      * Returns the time since the last physics update
      */
     static float DeltaPhysicsTime(void);
+    static sf::Uint16 GetPixelMeters(void);
+
+    static void SetLevel(engine::Level* level);
     int run(void);
   protected:
     void GameLoop(void);
@@ -38,6 +43,7 @@ namespace engine {
     int mMaxUpdates;
     int mMaxPhysicsUpdates;
     float mPhysicsUpdateRate;
+    static sf::Uint16 gPixelMeters;
     static sf::Clock gFrameClock;
     static sf::Clock gPhysicsClock;
     static Game* gGame;

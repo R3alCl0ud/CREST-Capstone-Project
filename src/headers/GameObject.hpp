@@ -4,8 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "Physics2D.hpp"
 // #include "Types.hpp"
-// #include "Collider2D.hpp"
-#include "RectangleCollider2D.hpp"
+#include "Collider2D.hpp"
+// #include "RectangleCollider2D.hpp"
 namespace engine {
   class GameObject {
     public:
@@ -21,7 +21,23 @@ namespace engine {
       virtual void update();
       virtual void fixedUpdate();
       virtual void start();
+      // default collider2Ds
+      virtual void onCollision(engine::Collider2D* collider2D) { }
+      virtual void onCollisionEnter(engine::Collider2D* collider2D) { }
+      virtual void onCollisionExit(engine::Collider2D* collider2D) { }
+      // RectangleCollider2Ds
       virtual void onCollision(engine::RectangleCollider2D* collider2D) { }
+      virtual void onCollisionEnter(engine::RectangleCollider2D* collider2D) { }
+      virtual void onCollisionExit(engine::RectangleCollider2D* collider2D) { }
+      // CircleCollider2Ds
+      virtual void onCollision(engine::CircleCollider2D* circleCollider2D) { }
+      virtual void onCollisionEnter(engine::CircleCollider2D* circleCollider2D) { }
+      virtual void onCollisionExit(engine::CircleCollider2D* circleCollider2D) { }
+      // PolygonCollider2Ds
+      virtual void onCollision(engine::PolygonCollider2D* polygonCollider2D) { }
+      virtual void onCollisionEnter(engine::PolygonCollider2D* polygonCollider2D) { }
+      virtual void onCollisionExit(engine::PolygonCollider2D* polygonCollider2D) { }
+
       virtual void draw(sf::RenderTarget& target) {
         // printf("gm draw\n");
         if (sprite.getTexture() != NULL) {
@@ -37,7 +53,7 @@ namespace engine {
       float getRotation();
       float getRotationAsDeg();
       engine::Physics2D* getPhysics();
-      engine::RectangleCollider2D* getCollider2D();
+      engine::Collider2D* getCollider2D();
 
       // setters
       void setLevel(Level* level);
@@ -57,7 +73,7 @@ namespace engine {
       engine::Physics2D physics2D;
       engine::Level* curLevel;
       float rotation;
-      engine::RectangleCollider2D* collider2D;
+      engine::Collider2D* collider2D;
     private:
   };
 }
