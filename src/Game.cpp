@@ -121,7 +121,6 @@ namespace engine {
             if (gm->getCollider2D() != NULL) {
               for (engine::GameObject* ogm : gObjs) {
                 if (gm == ogm || !ogm->getCollider2D()) continue;
-
                 if ((rect2D = dynamic_cast<engine::RectangleCollider2D*>(ogm->getCollider2D()))) collision = gm->getCollider2D()->intersects(rect2D);
                 else if ((circle2D = dynamic_cast<engine::CircleCollider2D*>(ogm->getCollider2D()))) collision = gm->getCollider2D()->intersects(circle2D);
                 else if ((poly2D = dynamic_cast<engine::PolygonCollider2D*>(ogm->getCollider2D()))) collision = gm->getCollider2D()->intersects(poly2D);
@@ -132,6 +131,7 @@ namespace engine {
                 collisionLeft = collision && gm->getPosition().x > ogm->getPosition().x;
                 if (collision) {
                   gm->onCollision(ogm->getCollider2D());
+                  if (rect2D) gm->onCollision(rect2D);
                   if (!gm->getCollider2D()->hasCollision(ogm->getCollider2D())) {
                     gm->onCollisionEnter(ogm->getCollider2D());
                     // if ()
@@ -156,11 +156,11 @@ namespace engine {
               }
             } else {
               if (velocity.x > 0.0f) {
-                p2d->addForce(sf::Vector2f(-0.8f * (velocity.x), 0.0f)); // * DeltaPhysicsTime()
+                p2d->addForce(sf::Vector2f(-0.8f * (velocity.x) * DeltaPhysicsTime(), 0.0f)); // * DeltaPhysicsTime()
               }
               velocity = p2d->getVelocity();
               if (velocity.x < 0.0f) {
-                p2d->addForce(sf::Vector2f(0.8f * (velocity.x), 0.0f)); // * DeltaPhysicsTime()
+                p2d->addForce(sf::Vector2f(-0.8f * (velocity.x) * DeltaPhysicsTime(), 0.0f)); // * DeltaPhysicsTime()
               }
             }
             velocity = p2d->getVelocity();

@@ -26,16 +26,19 @@ namespace engine {
     return false;
   }
 
-  bool RectangleCollider2D::intersects(RectangleCollider2D* rectColl2D) {
-    sf::Vector2f dist = rectColl2D->gameObject->getPosition() - gameObject->getPosition();
-    if (dist.x < 0) dist.x *= -1;
-    if (dist.y < 0) dist.y *= -1;
-    if (dist.x > (size.x + rectColl2D->size.x) / 2 || dist.y > (size.y + rectColl2D->size.y) / 2) {
-      return false;
-    }
-
-    return true;
+bool RectangleCollider2D::intersects(RectangleCollider2D* rectColl2D) {
+  sf::Vector2f dist = rectColl2D->gameObject->getPosition() - gameObject->getPosition();
+  if (dist.x < 0) dist.x *= -1;
+  if (dist.y < 0) dist.y *= -1;
+  if (dist.x > (size.x + rectColl2D->size.x) / 2 || dist.y > (size.y + rectColl2D->size.y) / 2) {
+    return false;
   }
+  if (rectColl2D->gameObject->getPosition().y > gameObject->getPosition().y) {
+    gameObject->move(sf::Vector2f(0.0f, 1.0f * (dist.y - ((size.y + rectColl2D->size.y) / 2) )));
+  }
+  return true;
+}
+
   bool RectangleCollider2D::intersects(engine::CircleCollider2D* circleColl2D) {
     return false;
   }

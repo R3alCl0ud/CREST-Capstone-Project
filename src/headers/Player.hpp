@@ -13,6 +13,8 @@ namespace engine {
     // void onCollision(engine::RectangleCollider2D* collider2D);
     void onCollisionEnter(engine::Collider2D* collider2D);
     void onCollisionExit(engine::Collider2D* collider2D);
+    // 
+      sf::Font textFont;
     double deltaX();
     double deltaY();
 

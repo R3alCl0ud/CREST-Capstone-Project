@@ -12,7 +12,7 @@ namespace engine {
 
       sf::Sprite sprite;
       sf::RectangleShape shape;
-      sf::Text* text;
+      sf::Text text;
       // sf::VertexArray vertices;
 
       GameObject();

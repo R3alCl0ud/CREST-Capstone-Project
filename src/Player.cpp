@@ -1,7 +1,11 @@
 #include "headers/Player.hpp"
 #include "headers/Game.hpp"
+#include <iostream>
+#include <string>
+#include <sstream>
 
 namespace engine {
+
   // public functions:
   Player::Player() {
     // Create a default rectangle bounds
@@ -21,6 +25,10 @@ namespace engine {
     this->collider2D = rect;
     physics2D.useGravity(true);
     this->jumpPressed = false;
+
+    textFont.loadFromFile("src/fonts/arial.ttf");
+    // text = new sf::Text("Velocity :<0.0, 0.0>", textFont);
+
   }
 
   Player::Player(sf::IntRect bounds) {
@@ -38,6 +46,25 @@ namespace engine {
   void Player::draw(sf::RenderTarget& target) {
     // printf("player draw\n");
     target.draw(this->shape);
+    std::ostringstream vel;
+    vel.precision(4);
+    vel <<"Velocity: <" <<std::fixed<< physics2D.getVelocity().x  << ", " <<std::fixed<< physics2D.getVelocity().y  << ">";
+    std::ostringstream pos;
+    pos.precision(4);
+    pos << "Position: (" <<std::fixed<<position.x<<", "<<std::fixed<<position.y<<")";
+    // return
+    sf::Text text( vel.str(), textFont);
+    sf::Text textPOS(pos.str(), textFont);
+    text.setPosition(position - sf::Vector2f(940, 430));
+    textPOS.setPosition(position - sf::Vector2f(940, 360));
+    text.setCharacterSize(64);
+    text.setStyle(sf::Text::Bold);
+    text.setFillColor(sf::Color::White);
+    textPOS.setCharacterSize(64);
+    textPOS.setStyle(sf::Text::Bold);
+    textPOS.setFillColor(sf::Color::White);
+    target.draw(text);
+    target.draw(textPOS);
   }
 
   // default deconstructor
@@ -72,19 +99,20 @@ namespace engine {
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && physics2D.getVelocity().x > -4.375f) {
-      // physics2D.addForce(sf::Vector2f(-4.375 * 10 * engine::Game::DeltaTime(), 0));
-      move(-4.375, 0);
+      physics2D.addForce(sf::Vector2f(-4.375 * 10 * engine::Game::DeltaTime(), 0));
+      // move(-4.375, 0);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && physics2D.getVelocity().x < 4.375f) {
-      // physics2D.addForce(sf::Vector2f(4.375 * 10 * engine::Game::DeltaTime(), 0));
-      move(4.375, 0);
+      physics2D.addForce(sf::Vector2f(4.375 * 10 * engine::Game::DeltaTime(), 0));
+      // move(4.375, 0);
     }
 
     engine::Game* g = engine::Game::GetGame();
     sf::View view = g->mWindow.getView();
     view.setCenter(this->getPosition());
     g->mWindow.setView(view);
+
   }
 
   void Player::setColor(sf::Color color) {
