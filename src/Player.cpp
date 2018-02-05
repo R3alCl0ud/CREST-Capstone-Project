@@ -94,7 +94,7 @@ namespace engine {
   void Player::update() {
     // physics2D.addForce(sf::Vector2f(0, G_C) * (float)engine::Game::DeltaTime());
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && canJump) {
+    if ((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) && canJump) {
       physics2D.addForce(sf::Vector2f(0, -12.5));
     }
 
