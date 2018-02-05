@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include "headers/VideoMode.hpp"
 
 int main()
 {
