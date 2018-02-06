@@ -18,8 +18,13 @@ int main() {
       if (event.type == sf::Event::Closed) {
         window.close();
       }
+      // if (event.type == sf::Event::KeyEvent) {
+      //   if (event.)
+      // }
     }
-
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+      window.close();
+    }
     accumulator += currentTime - frameStart;
     frameStart = currentTime;
     if (accumulator > 0.2f) {
