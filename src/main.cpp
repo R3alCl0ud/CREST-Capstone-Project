@@ -27,10 +27,14 @@ class TestLevel : public engine::Level {
     TestLevel() {
       engine::Player* player = new engine::Player;
       Platform* plat = new Platform;
+      Platform* wall = new Platform;
+      wall->setSize(2000, 100);
+      wall->setPosition(1500,-150.0f);
       plat->setSize(2000, 100);
       plat->setPosition(0, 112.5f);
       addGameObject(player);
       addGameObject(plat);
+      addGameObject(wall);
     }
 };
 
