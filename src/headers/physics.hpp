@@ -7,6 +7,9 @@
 #include <math.h>
 #include <SFML/Graphics/Shape.hpp>
 
+struct Material;
+struct MassData;
+
 struct AABB {
   sf::Vector2f min;
   sf::Vector2f max;
@@ -17,23 +20,8 @@ struct Circle {
   sf::Vector2f position;
 };
 
-bool AABBvsAABB(AABB a, AABB b) {
-  // Exit with no intersection if found separated along an axis
-  if(a.max.x < b.min.x || a.min.x > b.max.x) return false;
-  if(a.max.y < b.min.y || a.min.y > b.max.y) return false;
 
-  // No separating axis found, therefor there is at least one overlapping axis
-  return true;
-}
 
-bool CirclevsCircle(Circle a, Circle b) {
-  float r  = a.radius + b.radius;
-  r *= r;
-  return r < powf(a.position.x + b.position.x, 2) + powf(a.position.y + b.position.y, 2);
-}
-
-struct Material;
-struct MassData;
 struct Body {
   sf::Shape* shape;
   Material material;
@@ -59,5 +47,23 @@ struct Pair {
 };
 
 typedef std::list<Pair> PairList;
+
+float DotProduct(sf::Vector2f a, sf::Vector2f b);
+
+bool AABBvsAABB(AABB a, AABB b) {
+  // Exit with no intersection if found separated along an axis
+  if(a.max.x < b.min.x || a.min.x > b.max.x) return false;
+  if(a.max.y < b.min.y || a.min.y > b.max.y) return false;
+
+  // No separating axis found, therefor there is at least one overlapping axis
+  return true;
+}
+
+bool CirclevsCircle(Circle a, Circle b) {
+  float r  = a.radius + b.radius;
+  r *= r;
+  return r < powf(a.position.x + b.position.x, 2) + powf(a.position.y + b.position.y, 2);
+}
+
 
 #endif
