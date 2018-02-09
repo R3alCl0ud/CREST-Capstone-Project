@@ -7,8 +7,17 @@
 #include <math.h>
 #include <SFML/Graphics/Shape.hpp>
 
-struct Material;
-struct MassData;
+// #define AABB()
+
+struct MassData {
+  float mass;
+  float inv_mass;
+};
+
+struct Material {
+  float density;
+  float restitution;
+};
 
 struct AABB {
   sf::Vector2f min;
@@ -21,24 +30,17 @@ struct Circle {
 };
 
 
-
 struct Body {
   sf::Shape* shape;
+
+  sf::Uint16 id;
+
   Material material;
   MassData mass_data;
+
   sf::Vector2f velocity;
   sf::Vector2f force;
   double gravityScale;
-};
-
-struct MassData {
-  float mass;
-  float inv_mass;
-};
-
-struct Material {
-  float density;
-  float restitution;
 };
 
 struct Pair {
@@ -48,7 +50,9 @@ struct Pair {
 
 typedef std::list<Pair> PairList;
 
-float DotProduct(sf::Vector2f a, sf::Vector2f b);
+float DotProduct(sf::Vector2f a, sf::Vector2f b) {
+  return (a.x * b.x) + (a.y * b.y);
+}
 
 bool AABBvsAABB(AABB a, AABB b) {
   // Exit with no intersection if found separated along an axis
