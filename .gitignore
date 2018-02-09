@@ -2,3 +2,12 @@
 **.o
 sfml-app
 game
+build
+Build
+Library/
+library/
+obj/
+Obj/
+ProjectSettings/
+temp/
+Temp/
