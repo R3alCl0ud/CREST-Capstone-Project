@@ -5,7 +5,11 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - platform_pref: {fileID: 1342375739956166, guid: b2f06523f07634be18e57fa419ff1dab,
+      type: 2}
+  - spike_pref: {fileID: 1697765100617712, guid: 45f55f6a65927413c9841343619629df,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
