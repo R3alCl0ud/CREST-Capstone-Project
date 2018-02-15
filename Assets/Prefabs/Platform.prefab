@@ -25,7 +25,7 @@ GameObject:
   m_Layer: 0
   m_Name: Platform
   m_TagString: Platform
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 3cf1cb8b87d884ec4a5de888bddd2796, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -36,8 +36,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1342375739956166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07019265, y: -1.222, z: 0.07503401}
-  m_LocalScale: {x: 10, y: 0.5, z: 1}
+  m_LocalPosition: {x: 7, y: -1.222, z: 0.07503401}
+  m_LocalScale: {x: 20, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac7faa42052c4b05aa2e8bf2f62faa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spike_pref: {fileID: 0}
 --- !u!212 &212578319468012014
 SpriteRenderer:
   m_ObjectHideFlags: 1
